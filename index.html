@@ -85,7 +85,7 @@ footer{text-align:center;padding:10px;font-size:0.72rem;color:#aaa}
     <div style="font-size:.78rem;opacity:.8;margin-top:2px">Northern Cyprus Turkish Republic Central Tender Commission</div>
   </div>
   <div class="meta">
-    <div>Last updated: <strong>04/06/2026 10:32</strong></div>
+    <div>Last updated: <strong>04/06/2026 10:50</strong></div>
     <div id="rcnt" style="margin-top:3px"></div>
   </div>
 </header>
@@ -231,11 +231,9 @@ let _driveTimer = null;
 function saveOCToFile(){
   // 1. localStorage'a anında yaz
   try{localStorage.setItem('mik_oc',JSON.stringify(OC));}catch(e){}
-  document.getElementById('ocStatus').textContent = '✓ Saved';
-
   // 2. Mevcut Drive timer'ı iptal et, 60 sn sonrasına yeniden planla
   if(_driveTimer) clearTimeout(_driveTimer);
-  document.getElementById('ocStatus').textContent = '✓ Saved — Drive sync in 1 min…';
+  document.getElementById('ocStatus').textContent = '✓ Saved — Drive sync in 10s…';
   _driveTimer = setTimeout(async ()=>{
     try{
       const now = new Date();
@@ -303,14 +301,12 @@ function ocSave(){
   const now = new Date().toLocaleDateString('tr-TR',{day:'2-digit',month:'2-digit',year:'numeric'});
   OC[ocCurrentNo] = {durum, sorumlu, tarih:now};
   try{localStorage.setItem('mik_oc',JSON.stringify(OC));}catch(e){}
-  document.getElementById('ocStatus').textContent = '⏳ Saving...';
   saveOCToFile();
   go();
 }
 function ocClear(){
   delete OC[ocCurrentNo];
   try{localStorage.setItem('mik_oc',JSON.stringify(OC));}catch(e){}
-  document.getElementById('ocStatus').textContent = '⏳ Clearing...';
   saveOCToFile();
   ocClose();
   go();
