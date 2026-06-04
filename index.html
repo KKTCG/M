@@ -85,7 +85,7 @@ footer{text-align:center;padding:10px;font-size:0.72rem;color:#aaa}
     <div style="font-size:.78rem;opacity:.8;margin-top:2px">Northern Cyprus Turkish Republic Central Tender Commission</div>
   </div>
   <div class="meta">
-    <div>Last updated: <strong>04/06/2026 09:49</strong></div>
+    <div>Last updated: <strong>04/06/2026 10:32</strong></div>
     <div id="rcnt" style="margin-top:3px"></div>
   </div>
 </header>
@@ -257,12 +257,11 @@ function saveOCToFile(){
         }
       );
       document.getElementById('ocStatus').textContent = '✓ Drive: ' + fname;
-      setTimeout(()=>document.getElementById('ocStatus').textContent='', 5000);
     }catch(e){
       document.getElementById('ocStatus').textContent = '⚠ Drive: ' + e.message;
     }
     _driveTimer = null;
-  }, 60000);
+  }, 10000);
 }
 
 /* ── Popup ── */
